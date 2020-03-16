@@ -2,4 +2,5 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def start(request):
-	return HttpResponse("Hello there.")
+	context_dict = {'boldmessage': 'Nyarlathotep Ate My Hamster'}
+	return render(request, 'hamster/start.html', context_dict)
