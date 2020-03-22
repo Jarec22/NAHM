@@ -20,9 +20,9 @@ class Story(models.Model):
     hour = models.IntegerField()
     item = models.IntegerField()
     health = models.IntegerField()
-    choice1 = models.ForeignKey(Choice, on_delete=models.PROTECT)
-    choice2 = models.ForeignKey(Choice, on_delete=models.PROTECT)
-    choice3 = models.ForeignKey(Choice, on_delete=models.PROTECT)
+    choice1 = models.ForeignKey(Choice, on_delete=models.PROTECT, related_name='choice1')
+    choice2 = models.ForeignKey(Choice, on_delete=models.PROTECT, related_name='choice2')
+    choice3 = models.ForeignKey(Choice, on_delete=models.PROTECT, related_name='choice3')
     
     def __str__(self):
         return self.storyname
