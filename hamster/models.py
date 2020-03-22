@@ -21,8 +21,8 @@ class Story(models.Model):
     item = models.IntegerField()
     health = models.IntegerField()
     choice1 = models.ForeignKey(Choice, on_delete=models.PROTECT)
-    choice1 = models.ForeignKey(Choice, on_delete=models.PROTECT)
-    choice1 = models.ForeignKey(Choice, on_delete=models.PROTECT)
+    choice2 = models.ForeignKey(Choice, on_delete=models.PROTECT)
+    choice3 = models.ForeignKey(Choice, on_delete=models.PROTECT)
     
     def __str__(self):
         return self.storyname
