@@ -1,8 +1,29 @@
 {% extends 'hamster/base.html' %}
-<html>
+{% load staticfiles %}
 
-	<head>
-		<title>Register/Login</title>
-	</head>
-	
-</html>
+{% block title_block %}
+	Register/Login to Nyarlathotep Ate My Hamster
+{% endblock %}
+
+{% block body_block %}
+<h1>Nyarlathotep Ate My Hamster</h1>
+<strong>register here!</strong><br />
+
+<form id="register_form" method="post" enctype="multipart/form-data" action="">
+	{% csrf_token %}
+	{{ user_form.as_p }}
+	<input type="submit" name="submit" value="register" />
+</form>
+<br />
+<form id="login_form" method="post" action="">
+	{% csrf_token %}
+		Username: <input type="text" name="username" value="" size="25" />
+	<br />
+		Password: <input type="password" name="password" value="" size="25" />
+	<br />
+	<input type="submit" name="submit" value="login" />
+</form>
+
+
+
+{% endblock %}
