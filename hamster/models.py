@@ -30,13 +30,13 @@ class Story(models.Model):
 class User(models.Model):
     username = models.CharField(max_length=30, unique=True)
     password = models.CharField(max_length=30)
-    day = models.IntegerField()
-    hour = models.IntegerField()
-    item = models.IntegerField()
-    health = models.IntegerField()
-    picture = models.ImageField()
-    story = models.ManyToManyField(Story)
-    choice = models.ManyToManyField(Choice)
+    day = models.IntegerField(default = 0)
+    hour = models.IntegerField(default = 0)
+    item = models.IntegerField(default = 0)
+    health = models.IntegerField(default = 0)
+    picture = models.ImageField(blank = True)
+    story = models.ManyToManyField(Story, blank = True)
+    choice = models.ManyToManyField(Choice, blank = True)
 
     def __str__(self):
         return self.username
