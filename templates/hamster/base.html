@@ -5,10 +5,13 @@
 	<head lang="en">
 		<meta charset="UTF-8" />
 		<title>Nyarlathotep Ate My Hamster</title>
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	</head>
 	<body>
 		{% block body_block %}
 			This was inherited from the base template
 		{% endblock %}
+		<script src="{% static "js/jquery-3.3.1.min.js" %}" crossorigin="anonymous"></script>
+		<script src="{% static "js/hamster-jquery.js" %}" crossorigin="anonymous"></script>
 	</body>
 </html>
