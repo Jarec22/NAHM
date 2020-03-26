@@ -1,5 +1,6 @@
 from django import forms
-from hamster.models import User
+from hamster.models import UserProfile
+from django.contrib.auth.models import User
 
 class UserForm(forms.ModelForm):
 	password = forms.CharField(widget=forms.PasswordInput())
@@ -8,3 +9,8 @@ class UserForm(forms.ModelForm):
 		model = User
 		fields = ('username', 'password',)
 		
+class UserProfileForm(forms.ModelForm):
+	class Meta:
+		model = UserProfile
+		fields = ()
+		exclude = ['day','hour','item','health','picture','story','choice']

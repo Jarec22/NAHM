@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Choice(models.Model):
     choicename = models.CharField(max_length=30, unique=True)
@@ -27,9 +28,8 @@ class Story(models.Model):
     def __str__(self):
         return self.storyname
 
-class User(models.Model):
-    username = models.CharField(max_length=30, unique=True)
-    password = models.CharField(max_length=30)
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     day = models.IntegerField(default = 0)
     hour = models.IntegerField(default = 0)
     item = models.IntegerField(default = 0)
@@ -39,7 +39,7 @@ class User(models.Model):
     choice = models.ManyToManyField(Choice, blank = True)
 
     def __str__(self):
-        return self.username
+        return self.user.username
 
 
 

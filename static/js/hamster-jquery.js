@@ -7,4 +7,4 @@ $(document).ready(function(){
 					$("#register_form").show();
 					$("#login_form").hide();
 				});
-			});
+			});	
