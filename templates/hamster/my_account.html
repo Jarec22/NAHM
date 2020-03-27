@@ -1,0 +1,26 @@
+{% extends 'hamster/base.html' %}
+{% load staticfiles %}
+
+{% block body_block %}
+		<div class="content-section">
+			<div class="media">
+				<!-- Display the current picture of the user -->
+				<img class="account-img" src="{{ user.userprofile.picture.url }}">
+				<div class="media-body">
+					<!-- display the username of the logged in user --> 
+					<h2 class="account-heading">{{ user.username }}</h2>
+				</div>
+			</div>
+			<!-- the form to update the picture -->
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<fieldset class="form-group">
+					<legend class="border-bottom mb-4">Change your profile picture</legend>
+					{{ p_update_form.as_p }}
+				</fieldset>
+				<div class="form-group">
+					<button class="btn btn-outline-info" type="submit">Update</button>
+				</div>
+			</form>
+		</div>
+{% endblock %}

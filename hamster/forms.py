@@ -17,3 +17,8 @@ class UserProfileForm(forms.ModelForm):
 		# the fields required for the game
 		fields = ()
 		exclude = ['day','hour','item','health','picture','story','choice']
+		
+class ProfileUpdateForm(forms.ModelForm):
+	class Meta:
+		model = UserProfile
+		fields = ('picture',)

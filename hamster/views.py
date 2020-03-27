@@ -1,10 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from hamster.forms import UserForm, UserProfileForm
+from hamster.forms import UserForm, UserProfileForm, ProfileUpdateForm
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
 from django.urls import reverse
-from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 def about(request):
 	context_dict = {}
@@ -45,7 +44,7 @@ def start(request):
 			if user:
 				login(request, user)
 				print("The login was successful")
-				return redirect('about')
+				return redirect('my_account')
 				#add code to move them to the story selection or my account
 			else:
 				print(f"Invalid login details: {username}, {password}")
@@ -60,3 +59,19 @@ def start(request):
 					context = {'user_form':user_form,
 					'profile_form': profile_form,
 					'registered':registered})
+					
+@login_required
+def my_account(request):
+	if request.method == 'POST':
+		# instantiate the form to update the picture
+		p_update_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
+		if p_update_form.is_valid():
+			p_update_form.save()
+			return redirect('my_account')
+		else:
+			print(p_update_form.errors)
+	else:
+		# if it wasn't a POST request instantiate the form with the current user's picture
+		p_update_form = ProfileUpdateForm(instance=request.user.userprofile)
+	context = {'p_update_form': p_update_form,}
+	return render(request, 'hamster/my_account.html', context)

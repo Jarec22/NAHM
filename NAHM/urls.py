@@ -25,4 +25,5 @@ urlpatterns = [
 	path('about/', views.about, name='about'),
 	path('NyarlathotepAteMyHamster/', include('hamster.urls')),
     path('admin/', admin.site.urls),
+	path('my_account/', views.my_account, name='my_account'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

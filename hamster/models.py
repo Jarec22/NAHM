@@ -34,7 +34,7 @@ class UserProfile(models.Model):
     hour = models.IntegerField(default = 0)
     item = models.IntegerField(default = 0)
     health = models.IntegerField(default = 0)
-    picture = models.ImageField(blank = True)
+    picture = models.ImageField(blank = True, upload_to='profile_pics', default='default.jpg')
     story = models.ManyToManyField(Story, blank = True)
     choice = models.ManyToManyField(Choice, blank = True)
 
