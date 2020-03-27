@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-	Register/Login to Nyarlathotep Ate My Hamster
+	<title>Register/Login to Nyarlathotep Ate My Hamster</title>
 {% endblock %}
 
 
@@ -13,6 +13,7 @@
 			<div class="col-md-6 col-md-offset-3">
 				<div class="panel panel-login">
 					<div class="panel-heading">
+					<!--"links" to change the displayed form, register or login  -->
 						<div class="row">
 							<div class="col-xs-6">
 								<a class="login_form_link" id="login_form_link">Login</a>
@@ -23,9 +24,11 @@
 						</div>
 						<hr>
 					</div>
+					<!-- panel which displays the current form -->
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
+								<!-- login form, this one is displayed by default when the page is loaded -->
 								<form id="login_form" action="" method="post" role="form" style="display: block;">
 									{% csrf_token %}
 									<div class="form-group">
@@ -42,6 +45,7 @@
 										</div>
 									</div>
 								</form>
+								<!-- register form -->
 								<form id="register_form" action="" method="post" role="form" style="display: none;">
 									{% csrf_token %}
 									<div class="form-group">

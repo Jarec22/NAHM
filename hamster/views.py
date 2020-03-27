@@ -13,10 +13,13 @@ def about(request):
 	return render(request, 'hamster/about.html', context=context_dict)
 
 def start(request):
-	#user_form = UserForm()
-	#profile_form = UserProfileForm()
+	
 	registered = False
+	
 	if request.method == 'POST':
+		# Check if the request came from the register button
+		# if so handle it using the register logic and return
+		# the user to the same page where they can login afterwards
 		if request.POST.get('submit') == 'register':
 			user_form = UserForm(request.POST)	
 			profile_form = UserProfileForm(request.POST)
@@ -32,7 +35,8 @@ def start(request):
 				print("user form err ", user_form.errors)
 				print("profile form err ", profile_form.errors)
 				
-				
+		# this branch handles the login logic, after a successful login
+		# user is redirected to the my account page
 		elif request.POST.get('submit') == 'login':
 			print("did we get here")
 			username = request.POST.get('username')
@@ -47,6 +51,8 @@ def start(request):
 				print(f"Invalid login details: {username}, {password}")
 				return HttpResponse("Invalid login details supplied")
 	else:
+	# this part handles the case of not getting a POST request, i.e. the 
+	# page was just loaded, thus prepare the forms to be displayed.
 		user_form = UserForm()
 		profile_form = UserProfileForm()
 		
