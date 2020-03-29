@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from hamster.forms import UserForm, UserProfileForm, ProfileUpdateForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
@@ -19,7 +19,7 @@ def start(request):
 		# Check if the request came from the register button
 		# if so handle it using the register logic and return
 		# the user to the same page where they can login afterwards
-		if request.POST.get('submit') == 'register':
+		if request.POST.get('submit') == 'Register':
 			user_form = UserForm(request.POST)	
 			profile_form = UserProfileForm(request.POST)
 			if user_form.is_valid() and profile_form.is_valid():
@@ -36,7 +36,7 @@ def start(request):
 				
 		# this branch handles the login logic, after a successful login
 		# user is redirected to the my account page
-		elif request.POST.get('submit') == 'login':
+		elif request.POST.get('submit') == 'Login':
 			print("did we get here")
 			username = request.POST.get('username')
 			password = request.POST.get('password')
@@ -44,7 +44,7 @@ def start(request):
 			if user:
 				login(request, user)
 				print("The login was successful")
-				return redirect('my_account')
+				return redirect(reverse('hamster:my_account'))
 				#add code to move them to the story selection or my account
 			else:
 				print(f"Invalid login details: {username}, {password}")
@@ -67,7 +67,7 @@ def my_account(request):
 		p_update_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
 		if p_update_form.is_valid():
 			p_update_form.save()
-			return redirect('my_account')
+			return redirect(reverse('hamster:my_account'))
 		else:
 			print(p_update_form.errors)
 	else:
@@ -75,3 +75,8 @@ def my_account(request):
 		p_update_form = ProfileUpdateForm(instance=request.user.userprofile)
 	context = {'p_update_form': p_update_form,}
 	return render(request, 'hamster/my_account.html', context)
+
+@login_required
+def user_logout(request):
+	logout(request)
+	return redirect(reverse('hamster:start'))
