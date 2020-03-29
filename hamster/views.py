@@ -6,10 +6,20 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 def about(request):
-	context_dict = {}
-	print(request.method)
-	print(request.user)
+	context_dict={}
 	return render(request, 'hamster/about.html', context=context_dict)
+
+def index(request):
+	context_dict={}
+	return render(request, 'hamster/index.html', context=context_dict)
+	
+def faq(request):
+	context_dict={}
+	return render(request, 'hamster/faq.html', context=context_dict)
+	
+def contacts(request):
+	context_dict={}
+	return render(request, 'hamster/contacts.html', context=context_dict)
 
 def start(request):
 	
