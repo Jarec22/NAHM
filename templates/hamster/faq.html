@@ -8,7 +8,48 @@
 
 {% block body_block %}
 
-<h2> Insert some FAQ stuff <h2>
+<div class="bs-example">
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">Who or what is Nyarlathotep?</button>									
+                </h2>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p>Using google is not that hard, but since you already clicked this, here is the answer:
+					Nyarlathotep is a character in the works of H. P. Lovecraft and other writers. The character is commonly known in association with its role as a malign deity in the Lovecraft Mythos fictional universe, where it is known as the Crawling Chaos. 
+					-Source: Wikipedia.</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo">What are the requirements to play this game?</button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p>A working pc with a mouse would be a good start. And since you got here, I assume you have both and also a connection to the internet as well. So you're good to go. Now go, play away...</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree">Why are the answers to previous questions so passively aggressive?</button>                     
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p>This is a good question. Well, have you tried using google? If the answer is yes, then there are other questions which could point you to the answer. How late is it right now? Very late. How tired am I? Quite tired. Is this why I am like this? Possibly. Could I go to sleep and write this when I'm not tired? Yes. Will I do it? No, you're not my mom. Ignore me, just go play, you'll have fun and forget about this right away.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 	

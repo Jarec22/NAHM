@@ -1,18 +1,57 @@
 {% extends 'hamster/base.html' %}
 {% load staticfiles %}
-
-{% block title_block %}
-				About Rango
-{% endblock %}
 {% block body_block %}
-	<h1>Rango says...</h1>
-	<div>
-		<h2>here is the about page</h2>
-	</div>
-	<div>
-		<img src="{% static "images/aboutimage.jpg" %}" alt="Image of Rango" /> 
-		<img src="{{ MEDIA_URL }}cat.jpg" alt="Image of a cat"/>
-	</div>
-	<hr>
-	<div>
+<!-- Header -->
+<header class="bg-dark text-center py-5 mb-4">
+  <div class="container">
+    <h1 class="font-weight-light text-white">Meet the Team</h1>
+  </div>
+</header>
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <!-- Team Member 1 -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-0 shadow">
+        <img src="https://source.unsplash.com/TMgQMXoglsM/500x350" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">Team Member</h5>
+          <div class="card-text text-black-50">Web Developer</div>
+        </div>
+      </div>
+    </div>
+    <!-- Team Member 2 -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-0 shadow">
+        <img src="https://source.unsplash.com/9UVmlIb0wJU/500x350" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">Team Member</h5>
+          <div class="card-text text-black-50">Web Developer</div>
+        </div>
+      </div>
+    </div>
+    <!-- Team Member 3 -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-0 shadow">
+        <img src="https://source.unsplash.com/sNut2MqSmds/500x350" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">Team Member</h5>
+          <div class="card-text text-black-50">Web Developer</div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+<section class="mbr-section content" id="content">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">Hello, we are <strong>Team C</strong>! 
+			This is our game, Nyarlathotep Ate My Hamster. This game allows you to play an interactive story, where the world around you is shaped by your choices, affecting your future possibilities. Are you ready to embark on this exciting journey?</div>
+        </div>
+    </div>
+</section>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
 {% endblock %}

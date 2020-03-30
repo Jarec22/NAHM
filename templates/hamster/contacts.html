@@ -8,7 +8,40 @@
 
 {% block body_block %}
 
-<h2> Insert Contacts <h2>
+<h1>Contacts</h1>
 
+<div class="row">
+  <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Address</a>
+      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Telephone number</a>
+      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Technical support</a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Extras</a>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+		<p>As if I'm going to give you my address... But, you cannot tell anyone, ok? Well, if you promise...</p>
+		<p>523, A real street</p>
+		<p>A real building, flat -5</p>
+		<p>In the Middle of Nowhere, 99485 2+2=4</p>
+	  </div>
+	  
+      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"> 
+		<p> Since I'm feeling extra funny today, the number is going to be in words.</p>
+		<p> In different languages too.</p>
+		<p> Here goes: zero neun nula ichi sette šest fünf four kette восемь </p>
+	  </div>
+	  
+      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+		<p> Wow, you actually expected us to have some sort of support... </p>
+		<p> ...I'm impressed. And humbled. But, as probably most of the text within this specific page, and the FAQs I'll have to let you down. </p>
+		<p> There's none. So if something is not working, tough luck. However, I'm very confident in our coding abilites, so there's no chance you have managed to break anything. </p>
+	  </div>
+      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">Yes, I know, I'm a comedy king.</div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 	

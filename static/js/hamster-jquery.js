@@ -17,4 +17,6 @@ $(document).ready(function(){
 					$(this.parentNode).addClass('active');
 					$(document.getElementById('login_form_link').parentNode).removeClass('active');
 				});
-			});	
+});
+
+
