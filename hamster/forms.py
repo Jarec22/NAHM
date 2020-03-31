@@ -16,7 +16,7 @@ class UserProfileForm(forms.ModelForm):
 		# we only need this form to create a user object within our database with
 		# the fields required for the game
 		fields = ()
-		exclude = ['day','hour','item','health','picture','story','choice']
+		exclude = ['day','picture','story','choice']
 		
 class ProfileUpdateForm(forms.ModelForm):
 	class Meta:

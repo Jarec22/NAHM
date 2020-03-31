@@ -8,7 +8,47 @@
 
 {% block body_block %}
 
-<h2> Insert stuff to display the story selection <h2>
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          {{ story1.title }}
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        {{ story1.description }}
+		<form id="story_form" action="" method="post" role="form" style="display: block;">
+			{% csrf_token %}
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3">
+						<input type="submit" name="story1" id="story1" tabindex="4" class="btn btn-dark" value="Go!">
+					</div>
+				</div>
+			</div>
+		</form>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          How did I end up on a slave ship DLC.
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        Coming soon!
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
 	

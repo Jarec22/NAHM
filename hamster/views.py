@@ -4,13 +4,96 @@ from hamster.forms import UserForm, UserProfileForm, ProfileUpdateForm
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from hamster.models import Story, Choice, User
+from django.http import JsonResponse
+
+def choice(request):
+	current_user = request.user.userprofile
+	context_dict = {}
+	#get which choice was selected so we can display it
+	context_dict['choice'] = Choice.objects.get(choicename=current_user.choicename)
+	#if the method was post the request came from the form on the website,
+	#redirect back to the story page
+	if request.method == "POST":
+		return redirect(reverse("hamster:story"))
+	#if not display the choice set in the context_dict
+	return render(request, 'hamster/choice.html', context=context_dict)
+	
+def reset(request):
+	context = {}
+	#changes the value of users location to 0, none of the stories have storyname 0
+	#which is the value used for this attribute. in another view a check is performed 
+	#for 0, which if true sets the user location to the starting point of the story
+	#if not it keeps the users location as it is - this saves the user attributes 
+	#and progression between logins.
+	current_user = request.user.userprofile
+	current_user.location = 0
+	current_user.save()
+	return redirect(reverse("hamster:my_account"))
+
+def story(request):
+	context_dict = {}
+	current_user = request.user.userprofile
+	story = Story.objects.get(storyname=current_user.location)
+	#if request comes from one of the forms on the site, i.e. POST
+	#check which form it came from then set the location of the 
+	#user to the next progression within the story and also set
+	#the choicename attribute for the next view (choice) to display
+	if request.method == "POST":
+		if request.POST.get('choice1'):
+			current_user.location = story.choice1.progress
+			current_user.choicename = story.choice1.choicename
+			current_user.save()
+			story = Story.objects.get(storyname=current_user.location)
+			return redirect(reverse("hamster:choice"))
+		if request.POST.get('choice2'):
+			current_user.location = story.choice2.progress
+			current_user.choicename = story.choice2.choicename
+			current_user.save()
+			story = Story.objects.get(storyname=current_user.location)
+			return redirect(reverse("hamster:choice"))
+		if request.POST.get('choice3'):
+			current_user.location = story.choice3.progress
+			current_user.choicename = story.choice3.choicename
+			current_user.save()
+			story = Story.objects.get(storyname=current_user.location)
+			return redirect(reverse("hamster:choice"))
+	#parse user attributes from the location string (helper function at the bottom)
+	#pass these in the context_dict so they can be displayed in this view
+	values = get_story_vals(current_user.location)
+	context_dict = values
+	#check whether the current story has any choices if not do not add them to the 
+	#context_dict. If they were added zero's would be displayed
+	if story.choice1.title != "0":
+		context_dict['choice1'] = story.choice1
+		context_dict['choice2'] = story.choice2
+	else:
+		context_dict['end'] = True
+	if story.choice3.title != "0":
+		context_dict['choice3'] = story.choice3
+	context_dict['story'] = story
+	return render(request, 'hamster/story.html', context=context_dict)
+	
 
 def about(request):
 	context_dict={}
 	return render(request, 'hamster/about.html', context=context_dict)
 
+#this view orders the story objects by day attribute, the first story in an arc will have day set to 0
+#for different arc the character at the beginning of the storyname could be checked and compared
 def index(request):
+	current_user = request.user.userprofile
+	story1 = Story.objects.order_by('day')[0]
 	context_dict={}
+	context_dict['story1'] = story1
+	if request.method == 'POST':
+		if request.POST.get('story1'):
+			#this checks if the user has any 'save' data, i.e information about story progression from previous playthroughs
+			if current_user.location == "0":
+				current_user.location = story1.storyname
+				current_user.save()
+			return redirect(reverse('hamster:story'))
+	
 	return render(request, 'hamster/index.html', context=context_dict)
 	
 def faq(request):
@@ -90,3 +173,14 @@ def my_account(request):
 def user_logout(request):
 	logout(request)
 	return redirect(reverse('hamster:start'))
+	
+	
+#helper function which parses the story's storyname variable, which is composed of the current user's attributes
+def get_story_vals(title):
+	values = {}
+	values['story'] = title[0]
+	values['day'] = title[1]
+	values['hour'] = title[2:4]
+	values['minutes'] = title[4:6]
+	values['health'] = title[6:8]
+	return values

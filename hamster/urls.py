@@ -11,4 +11,7 @@ urlpatterns = [
 	path('index/', views.index, name='index'),
 	path('faq/', views.faq, name='faq'),
 	path('contacts/', views.contacts, name='contacts'),
+	path('index/story/', views.story, name='story'),
+	path('index/story/choice/', views.choice, name='choice'),
+	path('my_account/reset/', views.reset, name='reset'),
 ]

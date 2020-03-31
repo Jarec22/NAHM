@@ -24,9 +24,7 @@ ul {
   color: #ffffff;
 }
 
-.site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
-}
+
 
 .content-section {
   background: #ffffff;
@@ -41,9 +39,9 @@ ul {
   height: 125px;
   width: 125px;
   margin-right: 20px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .account-heading {
-  font-size: 2.5rem;
+  font-size: 3rem;
 }

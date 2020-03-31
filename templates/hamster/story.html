@@ -1,0 +1,93 @@
+{% extends 'hamster/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	<title>Make your choice</title>
+{% endblock %}
+
+
+{% block body_block %}
+	
+	<div class="card text-white bg-dark mb-3" style="max-width: 45rem;">
+	<div class="card-header">{{ story.title }}</div>
+	<div class="card-body">
+		<p class="card-text">{{ story.description }}</p>
+	</div>
+	</div>
+	
+	<div class="card text-white bg-dark mb-3" style="max-width: 45rem;">
+	<div class="card-header">Your attributes</div>
+	<div class="card-body">
+		<p class="card-text">The day is: {{ day }}</p>
+		<p class="card-text">The time is: {{ hour }}:{{ minutes }}</p>
+		<p class="card-text">Your health is: {{ health }}/10 </p>
+	</div>
+	</div>
+	
+	{% if end %}
+	<div>
+		<strong> Press this button to go to your account where you can reset your progress </strong>
+		<a href="{% url 'hamster:my_account' %}"class="btn btn-dark btn-lg active" role="button" aria-pressed="true">My Account</a>
+	</div>
+	<div>
+		<strong> Press this button to go to the story selection page, where you can select another great story, if available </strong>
+		<a href="{% url 'hamster:index' %}" class="btn btn-dark btn-lg active" role="button" aria-pressed="true">Story selection</a>
+	</div>
+	
+	{% else %}
+		<div class="card">
+			<h5 class="card-header">{{ choice1.title }}</h5>
+			<div class="card-body">
+				<p class="card-text">{{ choice1.description }}</p>
+				<form id="story_form" action="" method="post" role="form" style="display: block;">
+					{% csrf_token %}
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3">
+								<input type="submit" name="choice1" id="choice1" tabindex="4" class="btn btn-dark" value="Choice 1">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="card">
+			<h5 class="card-header">{{ choice2.title }}</h5>
+			<div class="card-body">
+				<p class="card-text">{{ choice2.description }}</p>
+				<form id="story_form" action="" method="post" role="form" style="display: block;">
+					{% csrf_token %}
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3">
+								<input type="submit" name="choice2" id="choice2" tabindex="4" class="btn btn-dark" value="Choice 2">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	{% if choice3 %} <!-- this extra check is here because not all story objects have 3 playable options, in that case 0s are passed, because choice cannot be null  and without this check the zero would display-->
+		<div class="card">
+			<h5 class="card-header">{{ choice3.title }}</h5>
+			<div class="card-body">
+				<p class="card-text">{{ choice3.description }}</p>
+				<form id="story_form" action="" method="post" role="form" style="display: block;">
+					{% csrf_token %}
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3">
+								<input type="submit" name="choice3" id="choice3" tabindex="4" class="btn btn-dark" value="Choice 3">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	{% endif %}
+	{% endif %}
+	
+	
+		
+	
+{% endblock %}

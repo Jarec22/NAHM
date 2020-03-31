@@ -1,0 +1,26 @@
+{% extends 'hamster/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	<title>This was your choice!</title>
+{% endblock %}
+
+
+{% block body_block %}
+<div class="card">
+			<h5 class="card-header">The result of your choice</h5>
+			<div class="card-body">
+				<p class="card-text">{{ choice.result }}</p>
+				<form id="story_form" action="" method="post" role="form" style="display: block;">
+					{% csrf_token %}
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3">
+								<input type="submit" name="confirm" id="confirm" tabindex="4" class="btn btn-dark" value="OK">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+{% endblock %}
