@@ -64,10 +64,6 @@ ul {
   color: #ffffff;
 }
 
-.row {
-  margin: auto;
-  width: 75%;
-}
 
 .title {
   margin: auto;
@@ -90,10 +86,7 @@ ul {
 .card text-white bg-dark mb-3 {
   max-width: inherit;
 }
-.row {
-  margin: auto;
-  width: 75%;
-}
+
 
 #logincentre {
   margin: auto;
@@ -110,7 +103,7 @@ ul {
   font-size: 100pt;
 }
 
-legend {
+legend, .list-group-item {
   font-family: "Garamond", serif; !important
   font-weight: bold;
 }
@@ -130,10 +123,31 @@ legend {
   margin-left: auto!important;
 }
 
-.col-sm-6 {
+#login, #register {
   margin: auto;
 }
 
 #submit {
   vertical-align: top;
+}
+
+#contacts {
+  margin: auto;
+  width: 75%;
+}
+
+.list-group-item.active {
+  background-color: #727372;
+}
+
+strong {
+  color: #ffffff;
+
+}
+
+.endbutton {
+  margin: auto;
+  width: 75%;
+  text-align: center;
+  margin-bottom: 20px;
 }

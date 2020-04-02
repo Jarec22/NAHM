@@ -22,3 +22,4 @@ class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
 		fields = ('picture',)
+		widgets = {'picture': forms.FileInput(), }

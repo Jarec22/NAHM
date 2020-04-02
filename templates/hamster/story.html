@@ -25,12 +25,10 @@
 	</div>
 	
 	{% if end %}
-	<div>
-		<strong> Press this button to go to your account where you can reset your progress </strong>
+	<div class="endbutton">
 		<a href="{% url 'hamster:my_account' %}"class="btn btn-dark btn-lg active" role="button" aria-pressed="true">My Account</a>
 	</div>
-	<div>
-		<strong> Press this button to go to the story selection page, where you can select another great story, if available </strong>
+	<div class="endbutton">
 		<a href="{% url 'hamster:index' %}" class="btn btn-dark btn-lg active" role="button" aria-pressed="true">Story selection</a>
 	</div>
 	

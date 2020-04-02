@@ -1,8 +1,9 @@
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NAMH.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NAHM.settings')
 
 import django
 django.setup()
+
 
 import csv
 from hamster.models import UserProfile, Story, Choice
@@ -13,11 +14,10 @@ with open('user.csv') as f:
         _, created = UserProfile.objects.get_or_create(
             user = row[0],
             day = row[1],
-            picture = 'default.jpg',
             location = row[2],
-            choicename = row[3],
+
         )
-m = input ()
+
 #with open('story.csv') as f:
  #   reader = csv.reader(f)
   #  for row in reader:
