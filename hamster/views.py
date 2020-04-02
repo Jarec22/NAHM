@@ -75,9 +75,7 @@ def story(request):
 	return render(request, 'hamster/story.html', context=context_dict)
 	
 
-def about(request):
-	context_dict={}
-	return render(request, 'hamster/about.html', context=context_dict)
+
 
 #this view orders the story objects by day attribute, the first story in an arc will have day set to 0
 #for different arc the character at the beginning of the storyname could be checked and compared
@@ -107,7 +105,9 @@ def contacts(request):
 def start(request):
 	
 	registered = False
-	
+	#Start page redirects to index if logged in
+	if request.user.is_authenticated:
+              return redirect(reverse('hamster:index'))  
 	if request.method == 'POST':
 		# Check if the request came from the register button
 		# if so handle it using the register logic and return
@@ -141,7 +141,8 @@ def start(request):
 				#add code to move them to the story selection or my account
 			else:
 				print(f"Invalid login details: {username}, {password}")
-				return HttpResponse("Invalid login details supplied")
+				return redirect(reverse('hamster:start'))
+
 	else:
 	# this part handles the case of not getting a POST request, i.e. the 
 	# page was just loaded, thus prepare the forms to be displayed.
@@ -184,3 +185,10 @@ def get_story_vals(title):
 	values['minutes'] = title[4:6]
 	values['health'] = title[6:8]
 	return values
+
+def delete(request):
+	context = {}
+	current_user = request.user.userprofile
+	current_user.user.delete()
+	current_user.delete()
+	return redirect(reverse("hamster:start"))

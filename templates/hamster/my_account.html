@@ -22,8 +22,11 @@
 					<button class="btn btn-dark" type="submit">Update</button>
 				</div>
 			</form>
-			<div>
+			<div class="form-group">
 				<a href="{% url 'hamster:reset' %}" class="btn btn-dark" role="button" aria-pressed="true">Reset</a>
+			</div>
+			<div class="form-group">
+				<a href="{% url 'hamster:delete' %}" class="btn btn-dark" role="button" aria-pressed="true">Delete</a>
 			</div>
 		</div>
 {% endblock %}
